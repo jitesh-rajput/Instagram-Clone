@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <style>
+         body{
+    font-family: Tahoma, Geneva,sans-serif;
+    color: black;
+    width: 100%;  
+    background-image: url('../static/Login Page/css/bg.png');
+    justify-content: center;
+    padding: 10px;
+    background-size: 100%;
+    text-align: center;
+    background-repeat: no-repeat;
+}
+.wrapper{
+    background: white;
+    padding: 60px;
+    width: 550px;
+    margin: auto;
+    margin-top: 25px;
+    height: 400px;
+    align-items: center;
+    border-radius: 20px;
+
+}
+#title{
+    color: black;
+    text-align: center;
+}
+
+form{
+    width: 240px;
+    text-align: center;
+}
+.wrap-input100 {
+    margin-top: 5px;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 5px;
+  }
+  
+  .input100 {
+    text-align: center;
+    font-family: Poppins-Medium;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+    outline: none;
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 68px;
+    margin: 10px;
+  }
+
+
+  .focus-input100 {
+    display: block;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px;
+    color: rgba(87,184,70, 0.8);
+  }
+
+  .input100:focus + .focus-input100 {
+    -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
+    animation: anim-shadow 0.5s ease-in-out forwards;
+  }
+  
+  @-webkit-keyframes anim-shadow {
+    to {
+      box-shadow: 0px 0px 70px 25px;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes anim-shadow {
+    to {
+      box-shadow: 0px 0px 70px 25px;
+      opacity: 0;
+    }
+  }
+
+.symbol-input100 {
+  font-size: 15px;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 35px;
+  pointer-events: none;
+  color: #666666;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.input100:focus + .focus-input100 + .symbol-input100 {
+  color: #57b846;
+  padding-left: 28px;
+}
+input[type=submit]
+{
+    border: none;
+    width: 190px;
+    background: green;
+    color: white;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    border-radius: 15px;
+    cursor: pointer;
+    align-self: center;
+}
+input[type=submit]:hover{
+    color: #fff;
+    background-color: black;
+
+}
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charserutg-8"/>
+    <title>varificaton Page</title>
+    <!--<link href="../static/Login Page/css/VarificationCSS.css" rel ="stylesheet" type="text/css"/>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonrs.googleapis.com/css? family=Play">
+</head>
+<body>
+   <!-- <div class="fix-header">
+        <div class="container1">
+            <nav>
+                <h1> I n s t a g r a m </h1>
+            </nav>
+        </div>
+    </div>
+-->
+    <div class = "wrapper" >
+        {% if data.user%}
+        <form action="varification1" method="POST">
+            {% csrf_token %}
+            <div class="wrap-input100 validate-input" data-validate = " Username Required">
+                <input class="input100" type="text" name="text" placeholder="Username"required>
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+                </div>
+            <input type="submit" value=" Send OTP"><br><br><br>
+        </form>
+        {% endif %}
+        {% if data.otp%}
+            <form method="POST" action="varification2">
+                {% csrf_token %}
+                <div class="wrap-input100 validate-input" data-validate = " OTP is required">
+                    <input class="input100" type="number" name="OTP" placeholder="OTP" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                    </span>
+                    </div>
+                </br></br>
+            <input type="submit" value="Submit"></br></br></br>
+        </form>
+        {% endif %}
+
+        {% if data.changepass%}
+        <form action="change_pass" method="post">
+                            {% csrf_token %}
+            <div class="wrap-input100 validate-input" data-validate = " New password is required">
+                        <input class="input100" type="password" name="n_pass1" placeholder=" New Password " required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                        </span>
+            </div>
+                </br></br>
+                <div class="wrap-input100 validate-input" data-validate = " New Repeat password is required">
+                        <input class="input100" type="password" name="n_pass2" placeholder=" Repeat Password " required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                        </span>
+                </div>
+            <input type="submit" value="Change Password "></br></br></br>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

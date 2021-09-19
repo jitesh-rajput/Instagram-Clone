@@ -1,0 +1,177 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> Profile</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				background-image: url("../Media/bg.png") ;
+			}
+			h2{
+				color:white
+			}
+			#wrapper {
+				max-width: 68em;
+				width: 100%;
+				margin: 0 auto;
+				padding: 0 2em;
+				opacity: 1;
+			}
+			body.is-loading #wrapper {
+				opacity: 0;
+				-moz-filter: blur(1px);
+				-webkit-filter: blur(1px);
+				-ms-filter: blur(1px);
+				filter: blur(1px);
+			}
+
+			body.is-covered #wrapper {
+				-moz-filter: blur(3px);
+				-webkit-filter: blur(3px);
+				-ms-filter: blur(3px);
+				filter: blur(3px);
+			}
+			.container{
+			background-color:white;
+			margin-top: 30px;
+			padding-top: 20px;
+			}
+			#wid{
+				width: 700px;
+				border-radius: 10px;
+			}
+			.container img{
+			width:650px;
+			height:400px;
+			padding-left: 10px;
+			}
+			#padd{
+				padding-left: 10px;
+			}
+			#id{
+				color: white;
+			}
+		/* Header */
+			#header {
+				text-align: center;
+				padding: 6em 0 4em 0;
+				color:white;
+			}
+			#header a{
+			color:white;
+			}
+			#header #back{
+					position: fixed;
+					left: 5px;
+			}
+			#header .avatar {
+					border-radius: 100%;
+					display: inline-block;
+					margin: 0 0 2em 0;
+					padding: 0.5em;
+					border: solid 1px rgba(255, 255, 255, 0.25);
+					background-color: rgba(255, 255, 255, 0.075);
+					height: 220px;
+					width: 220px;
+			}
+
+			#header .avatar img{
+						height: 200px;
+						width: 200px;
+						border-radius: 50%;
+						display: block;
+					}
+		
+			#header .avatar a:hover img {
+				background-color: rgba(255, 255, 255, 0.25);
+				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 0 0.5em 0 #FF6382;
+			}			
+			
+		</style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</head>
+	<body>
+				<!-- Friend List modal -->
+<div class="modal fade" id="friendlist" tabindex="-1" role="dialog" aria-labelledby="showfriendlist" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showfriendlist"> All Friend</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% for fr in friend %}
+		  	<h3>{{fr.username}}</h3>
+		  {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<!-- Header -->
+		<header id="header">
+			<span class="avatar"><a href="{{dp.url}}" ><img src="{{dp.url}}" alt="" /></a></span>
+			<h3> {{fname}}    {{lname}}</h3>
+			<h3> Friends :-{% if no_of_friend %}{{no_of_friend}}{% else %} 0 {% endif %}</h3>
+			{% if friend %}
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#friendlist"> All Friends </button>
+			{% endif %}
+			<h3> {{bio}}</h3>
+
+		</header>
+		<!-- Main -->
+		{% if imgList %}
+		{% for i in imgList %}
+		<div class="row">
+			{% for j in i %}
+			<div class="container" id ="wid">
+				<a href="{{j.image.url}}"></a>
+				<img src="{{j.image.url}}" alt="{{j.image.url}}"></a>
+				<hr>
+				<h4>{{j.comment}} </h4>
+				<h4>
+					<a href="{% url 'showlike' j.id%}" > {{j.likes}}</a>
+                <a href="{% url 'likepost' j.id%}" class="btn btn-danger mr-4">Like</a>
+                {{j.comments}}
+              <a href="{% url 'showlike' j.id%}" class="btn btn-warning mr-4"> See Comments </a>
+            </h4>
+             <form action="{% url 'addcomment' j.id %}" method="post">
+            {% csrf_token %}
+            Comment:<input type="text" name="comment" size="50">
+        <button type="submit" class="btn btn-primary ml-4"> Add Comment</button>
+          </form>
+			</div>
+			{% endfor %}
+			{% endfor %}
+		</div>
+		{% endif %}
+		{% if blank %}
+		<div>
+			<h2> No Post Upload Until</h2>
+		</div>
+		{% endif %}
+		<!-- Scripts -->
+
+			<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+			<script src="../static/Profile/assets/js/jquery.min.js"></script>
+			<script src="../static/Profile/assets/js/jquery.poptrox.min.js"></script>
+			<script src="../static/Profile/assets/js/skel.min.js"></script>
+			<script src="../static/Profile/assets/js/main.js"></script>
+	</div>
+
+	</body>
+</html>

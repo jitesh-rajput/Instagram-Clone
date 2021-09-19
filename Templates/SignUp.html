@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <style>
+        body{
+    font-family: Tahoma, Geneva,sans-serif;
+    color: black;
+    width: 100%;  
+    background-image: url('../static/Login Page/css/bg.png');
+    justify-content: center;
+    padding: 10px;
+    background-size: 100%;
+    text-align: center;
+    background-repeat: no-repeat;
+}
+.fix-header{
+    top: 0;
+    width: 100%;
+    position: fixed;
+    background-color: #333;
+    padding:10px 0;
+    color: #fff;
+}
+.fix-header h1{
+    text-align: center;
+    text-transform: capitalize;
+}
+.wrapper{
+    background: white;
+    padding: 10px;
+    width: 350px;
+    margin: auto;
+    margin-top: 25px;
+    height: 600px;
+    align-items: center;
+    border-radius: 20px;
+}
+#title{
+    color: black;
+    text-align: center;
+}
+
+form{
+    width: 240px;
+    align-self: center;
+    padding-left: 25px;
+    color: #03a9f4;
+    
+}
+/*
+input[type=text]
+{
+    width: 250px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    font-family: 'play', sans-serif;
+    font-size: 20px;
+    padding: 17px;
+    transition: border 0.5s;
+    outline:none;
+    color:black;
+}
+input[type=password]
+{
+    width: 250px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    font-family: 'play', sans-serif;
+    font-size: 20px;
+    padding: 17px;
+    transition: border 0.5s;
+    outline:none;
+    color:black;
+
+}
+input[type=gmail]
+{
+    
+    width: 250px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    font-family: 'play', sans-serif;
+    font-size: 20px;
+    padding: 17px;
+    transition: border 0.5s;
+    outline:none;
+    color:black;
+}
+input[type=date]
+{
+    width: 250px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    font-family: 'play', sans-serif;
+    font-size: 20px;
+    padding: 17px;
+    transition: border 0.5s;
+    outline:none;
+    color:black;
+}
+*/
+
+
+.wrap-input100 {
+    margin-top: 10px;
+    position: relative;
+    width: 80%;
+    z-index: 1;
+    margin-bottom: 10px;
+  }
+  
+  .input100 {
+    font-family: Poppins-Medium;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+    outline: none;
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 68px;
+  }
+
+
+  .focus-input100 {
+    display: block;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px;
+    color: rgba(87,184,70, 0.8);
+  }
+
+  .input100:focus + .focus-input100 {
+    -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
+    animation: anim-shadow 0.5s ease-in-out forwards;
+  }
+  
+  @-webkit-keyframes anim-shadow {
+    to {
+      box-shadow: 0px 0px 70px 25px;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes anim-shadow {
+    to {
+      box-shadow: 0px 0px 70px 25px;
+      opacity: 0;
+    }
+  }
+
+.symbol-input100 {
+  font-size: 15px;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 35px;
+  pointer-events: none;
+  color: #666666;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.input100:focus + .focus-input100 + .symbol-input100 {
+  color: #57b846;
+  padding-left: 28px;
+}
+
+input[type=submit]
+{
+    border: none;
+    width: 190px;
+    background:green;
+    color: white;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+input[type=submit]:hover{
+    color: #fff;
+    background-color: black;
+
+}
+
+H3{
+    color:white;
+}
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charserutg-8"/>
+    <title>SignUp Page</title>
+    <!--<link rel ="stylesheet" href="../static/Login Page/css/SignUpCSS.css"  type="text/css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonrs.googleapis.com/css? family=Play">
+</head>
+<body>
+  <!-- <div class="fix-header">
+        <div class="container1">
+            <nav>
+                <h1>  <a href="">Friends </a> </h1>
+                 Enjoy <a href="#"><span class="blue">Li</span><span class="green">fe</span></a>
+            </nav>
+        </div>
+    </div>
+-->
+{% if messages%}
+			{% for msg in messages%}
+			<div class="alert alert-{{messages.tags}}" role="alert">
+				<h3>{{msg}}</h3>
+              </div>
+              {%endfor%}
+{%endif%}
+ <div class = "wrapper" >
+        <div id="title">
+            <h2>Create New Account </h2>
+        </div>
+         <form action="signup" method="POST">
+             {% csrf_token %}
+            <div class="wrap-input100 validate-input" data-validate = " Username is required">
+                <input class="input100" type="text" name="Username" placeholder="Username" required>
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate = " Username is required">
+                <input class="input100" type="text" name="First_name" placeholder="First_name" required>
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate = " Username is required">
+                <input class="input100" type="text" name="Last_name" placeholder="Last_name" required>
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate = " Password is required">
+                <input class="input100" type="password" name="Password" placeholder="Password" required>
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate = "Reapet Entered Password">
+                <input class="input100" type="password" name="RPassword" placeholder="RPassword" required>
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                </span>
+            </div>
+        <div class="wrap-input100 validate-input" data-validate = "email">
+            <input class="input100" type="email" name="Email" placeholder="Email">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+        </div>
+            <input type="submit" value=" Submit "></br></br></br>
+     </form>
+    </div>
+</div>
+</body>
+</html>

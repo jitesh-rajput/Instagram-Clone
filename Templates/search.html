@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Add Friend</title>
+    </head>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-image: url("../Media/bg.png") ;
+            background-size: cover;
+        }
+        .container{
+            margin-top: 60px;
+            padding-top: 20px;
+           padding-bottom: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        img{
+            margin-left: 30px;
+            height: 200px;
+            width: 200px;
+            border-color: black;
+            border-width: 5px;
+            border-radius: 50%;
+        }
+        p{
+            font-size: 20px;
+        }
+        .center{
+            margin-left: 60px;            
+        }
+        #size{
+            width: 700px;
+        }
+    </style>
+    <script>
+    function saychange(){
+        document.getElementById('change').value='Requested';
+       //    document.getElementById('change').style.color='red';
+
+        }
+
+         //  <!-- function sayHello() {
+           //    alert(" Friend Request id sented")
+            //   ("button").
+            //}-->
+      </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <body>
+   
+        <div class="container" id="size">
+        <div class="media">
+            <img class="align-self-center mr-3" src="{{user.dp.url}}" alt="Profile Photo">
+            <div class="media-body">
+                <a href="#" ><h2 class="mt-0 center"> {{user.username}}</h2></a>
+            <br>
+            
+              <p class="mb-0 center">{{user.bio}}</p>
+              <br>
+                <input type="button" value="Add Friend" id="change" onclick="saychange();" class="btn btn-primary center change"/>
+            </div>
+          </div>
+        </div>
+   
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

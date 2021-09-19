@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Show</title>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        body{
+            background-image: url("../Media/bg.png") ;
+            background-size: cover;
+        }
+        .like-manage{
+        margin-top:30px;
+        margin-left:-300px;
+        }
+        .comment-manage{
+        margin-top:30px;
+        margin-right:-300px;
+        }
+        .size{
+        height:600px;
+        }
+        .left{
+        margin-left:200px;
+        }
+        #post_size{
+            width: 700px;
+        }
+        .big-img{
+            padding-left:100px;
+            height:250px;
+            width:450px;
+        }
+        .scroll {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+ <div class="container my-4 " id="post_size">
+    <div class="card">
+        <a href="{% url 'userprofile' user.username %} " >
+            <div class="card-header"><h2>{{data.post.username}}</h2></a></div>
+        <div class="card-body">
+          <img src="{{data.post.image.url}}" class="big-img" >
+          <p class="card-text"> {{data.post.caption}}</p>
+        </div>
+      </div>
+<div class="container">
+   <div class="row">
+  <div class="col-md like-manage">
+    <div class="card size">
+      <div class="card-body">
+          <h3 class="card-title"><center> Liked By </center></h3><hr>
+        <div class="card-text scroll">
+            {% if data.like_user %}
+                {% for user in data.like_user %}
+                <a href="{% url 'userprofile' user.username %} " ><h4 class="left">{{user.username}}</h4></a>
+                <hr>
+                {% endfor %}
+            {% else %}
+                <h3 style="color:red;"> No Likes </h3>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md comment-manage">
+    <div class="card size">
+      <div class="card-body">
+          <h3 class="card-title"> <center> All Comments </center></h3><hr>
+        <div class="card-text scroll">
+            {% if data.comment_user %}
+                {% for  user in data.comment_user %}
+                <h4>{{user.uname}}</h4>
+                <p>{{user.comment}}</p>
+                <hr>
+                {% endfor %}
+            {% else %}
+            <h3 style="color:red;"> No Comment </h3>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Show modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="showlist" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showlist"> {% if data.like %} All Likes {% endif %}{% if data.comment %} All Comments {% endif %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% for user in data.user %}
+          <div class="container" id="size">
+        <div class="media">
+            <div class="media-body">
+                <a href="{% url 'userprofile' user.username %} " ><h3 class="mt-0 center"> {{user.username}}</h3></a>
+                <input type="button" value="Add Friend" id="change" onclick="saychange();" class="btn btn-primary center change"/>
+            </div>
+          </div>
+        </div>
+           {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

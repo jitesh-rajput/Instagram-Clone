@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Social Network </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/Index/css/font-awesome.min.css">
+
+  
+   <style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none; 
+    }
+    body{
+            font-family: Tahoma, Geneva,sans-serif;
+            color: black;
+            background-image:url("../Media/bg.png");
+            align-items: center;
+            overflow: hidden;
+            background-repeat: no-repeat;   
+            background-size: cover;
+            height: 100vh;
+        }
+    .text center{
+    text-align:center
+    }
+    .sidebar{
+        margin-top: 70px;
+        position: fixed;
+        left: -250px;
+        width: 250px;
+        height: 75%;
+        transition: all .5s ease;
+        border-radius: 20px;
+      
+    }
+    .sidebar header{
+        margin-bottom: 40px;
+        border-radius: 20px;
+        font-size: 24px;
+        color: black;
+        text-align: center;
+        line-height: 70px;
+        background: white;
+        user-select: none;
+    }
+    .sidebar ul button{
+        display: block;
+        height: 100%;
+        width: 100%;
+        line-height: 50px;
+        font-size: 20px;
+        color: black;
+        padding-left: 40px;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid black;
+        transition: .4s;
+        background-color:white;
+    }
+    .sidebar ul li:hover{
+        padding-left: 50px;
+    }
+    .sidebar ul li i{
+        margin-right: 16px;
+    }
+    .ul li button:hover{
+        background-color: rgba(0,0,0,0.8);
+    }
+    #check{
+        display: none;
+    }
+    
+    label #btn{
+        position: absolute;
+        cursor: pointer;
+        left: 40px;
+        z-index:1111;
+        top: 25px;
+        font-size: 35px;
+        color: white;
+        padding: 6px 12px;
+        transition: all .5s;
+        background-color: black;
+    }
+    label #cancel{
+        position: absolute;
+        cursor: pointer;
+        left: -195px;
+        top: 17px;
+        font-size: 30px;
+        color: white;
+        padding: 4px 9px;
+        transition: all .5s ease;
+        background-color: tomato;
+    }
+    #check:checked ~ .sidebar{
+        left: 0;
+    }
+    #check:checked ~ label #btn{
+          left: 250px;
+          opacity: 0;
+          pointer-events: none;
+    
+    }
+    #check:checked ~ label #cancel{
+        left: 195px;
+    
+    }
+   
+    
+    
+    .blue { color: #6CF; }
+    
+    .green { color: #CF0; }
+    
+    h2 {
+        padding: 10px 0;
+    }
+    
+    p {
+        padding: 10px 0;
+        text-align: justify;
+    }
+    
+    a {
+        color: #FF6;
+    }
+    
+    a:hover {
+        color: #F60;
+    }
+    
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+    
+    img {
+        vertical-align: middle;
+        border-radius:50%;
+        height:150px;
+        width:150px;
+    }
+    /* Preloader */
+    
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff; /* change if the mask should have another color then white */
+        z-index: 99; /* makes sure it stays on top */
+    }
+    
+    #status {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 50%; /* centers the loading animation horizontally one the screen */
+        top: 50%; /* centers the loading animation vertically one the screen */
+        background-image: url(../images/status.gif); /* path to your loading animation */
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: -100px 0 0 -100px; /* is width and height divided by two */
+    }
+    
+    #check:checked ~ #main-wrapper{
+         margin-left: 250px;
+    }
+    /*general*/
+    #main-wrapper {
+       padding-bottom:0px;
+        }
+    .logo img{
+        margin-left:0%;
+        heigth:100px;
+        width:150px;
+        border-radius:50%;
+        }
+
+    .templatemo-logo {
+        z-index: 1;
+    }
+    .templatemo-site-title {
+        color: #fff !important;
+        text-shadow: 0px 2px 2px rgba(0, 0, 0, 1);
+    }
+    
+    .templatemo-site-title a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .templatemo-site-title a:hover {
+        text-decoration: none;
+    }
+    
+    
+    img.slide {
+        width: 100%;
+        z-index: -9999999;
+        position: absolute;
+    }
+    
+    .active {
+        display: block;
+    }
+    
+    .inactive {
+        /* left: 703px; */
+        display: none;
+    }
+    
+    .image-section {
+        position: fixed;
+    }
+    
+    .image-container {
+        position: relative;
+    }
+    
+    .image-container img {
+        position: absolute;
+    }
+    
+    .templatemo-content {
+        position: static;
+        overflow: hidden;
+        margin-top: 10%;
+        padding-bottom: 6%;
+    }
+    
+    .black-bg {
+        background-color: rgba(0,0,0,0.8);
+    }
+    .black-bg:before, .black-bg:after {
+        content: "";
+        display: table;
+        line-height: 0;
+    }
+    .black-bg:after {
+        clear: both;
+    }
+    
+    .templatemo-content section {
+        font-family: 'Raleway', sans-serif;
+        position: relative;
+        overflow: hidden;
+        top: 0;
+        padding-bottom: 20px;
+    }
+    
+    
+    .templatemo-content-wrapper {
+        overflow:hidden;
+      
+    }
+    
+    .templatemo-content h2 {
+        color:#fff;
+        font-family: 'Raleway', sans-serif;
+    
+    }
+    
+    .templatemo-content p {
+        font-family: 'Raleway', sans-serif;
+        color: #fff;
+        font-size: 16px;
+    }
+    
+    #map-canvas {
+        height: 260px;
+    }
+
+    .footer {
+        overflow:hidden;
+        position:fixed;
+        bottom: 10px;
+    }
+    
+    .footer-text {
+        font-family: 'Raleway', sans-serif;
+        color:#fff;
+        text-shadow: 0px 2px 3px rgba(0, 0, 0, 1);
+        margin-left: 30px;
+        font-size: 14px;
+    }
+    
+    .margin-top-20 {
+        margin-top: 20px;
+    }
+    
+    .margin-bottom-20 {
+        margin-bottom: 20px;
+    }
+    
+    .btn-menu {
+        padding: 20px 0;
+        text-align: center;
+    }
+    
+    .btn-menu > .fa {
+        font-size: 50px;
+        margin: 20px 0;
+    }
+    .btn-menu > h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+    
+    .change-section {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .change-section .black-bg {
+        transition: all 0.4s ease;
+    }
+    
+    .change-section .black-bg > h2 {
+        transition: all 0.4s ease;
+    }
+    
+    .change-section:hover {
+        text-decoration: none;
+        color: #246BB2;
+    }
+    
+    .change-section:hover .black-bg {
+        background-color: rgba(255,255,255,0.8);
+    }
+    
+    .change-section:hover .black-bg > h2 {
+        color: #246BB2;
+    }
+    
+    @media (max-width: 991px) {
+        .footer {
+            overflow:hidden;
+            position:static;
+            text-align: center;
+        }
+    
+        .footer-text {
+            margin-left: 0;
+        }
+    }
+   
+   </style>
+  
+    <!-- Google Web Font Embed -->
+    
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    
+    <input type="checkbox" id="check">
+    <label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+        <header> Setings </header>
+        <ul>
+            <li> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search"> Search </i></button></li>
+            <li> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeDPModal"><i class="fa fa-user"> Change DP </i></button></li>
+            <li> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadimgModal"><i class="fa fa-picture"> Upload Post</i> </button></li>
+             <li> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changebioModal"><i class="fa fa-comments"> Change Bio </i></button></li>
+           <!-- <li> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeusernameModal"><i class="fa fa-trash"> Change Username</i> </button></li>-->
+            <li> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aboutus"><i class="fa fa-picture-o"> About Us</i></button></li>
+            <li> <button type="button" class="btn btn-primary" ><a href="logOut" style="color:black"><i class="fa fa-sign-in"> Log Out </i></a></button></li>
+        </ul>
+    </div>
+   <!-- Searsh modal -->
+  <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="SearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="SearchModalLabel"> Search</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+            <div class="modal-body">
+             <form method="post" action="main/usersearch">
+              {% csrf_token %}
+                Enter Uername: - <input type="text" name="searchuser"  required>
+                 <button type="submit" class="btn btn-primary">Search</button>
+             </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+      </div>
+    </div>
+  </div>
+
+ <!-- Change Dp  modal -->
+  <div class="modal fade" id="changeDPModal" tabindex="-1" role="dialog" aria-labelledby="changeDPModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="changeDPModalLabel"> Change DP</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <center><img src="{{userpro.dp.url}}"><br><br></center>
+           <form action="main/changeDP" method="post" enctype="multipart/form-data">
+               {% csrf_token %}
+         Select Image :- <input type="file" name="dp" required><br><br>
+          <input type="submit" class="btn btn-primary" value="Change Dp">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Upload Image modal -->
+  <div class="modal fade" id="uploadimgModal" tabindex="-1" role="dialog" aria-labelledby="uploadimgModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadimgModalLabel"> Upload Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <form action="main/uploadimg" method="post" enctype="multipart/form-data">
+               {% csrf_token %}
+               Select Image :- <input type="file" name="image"><br><br>
+               <label for="Caption"> Caption:-</label>
+               <textarea id="Caption" type="textarea" cols="25" rows="10" placeholder=" Add Caption Here" name="Caption"></textarea>
+                <input type="submit" class="btn btn-primary" value=" Upload Post" >
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Change Bio modal -->
+   <div class="modal fade" id="changebioModal" tabindex="-1" role="dialog" aria-labelledby="changebioModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="changebioModalLabel">Change Bio</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Current Bio :-<center><h4>{{userpro.bio}}</h4></center><br>
+          <form action="main/changeBio" method="post" enctype="multipart/form-data">
+               {% csrf_token %}
+            Enter New Bio :- <input type="text" name="nbio" required><br><br>
+          <input type="submit" class="btn btn-primary" value="Change Bio"/>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Change Username modal -->
+   <div class="modal fade" id="changeusernameModal" tabindex="-1" role="dialog" aria-labelledby="changeusernameModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="changeusernameModalLabel">Change Bio</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Current Username:-<center><h4>{{userpro.username}}</h4></center><br>
+          <form action="main/changeusername" method="post">
+               {% csrf_token %}
+            Enter New Username :- <input type="text" name="nuname" required><br><br>
+          <input type="submit" class="btn btn-primary" value="Change Username"/>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- About Us modal -->
+   <div class="modal fade" id="aboutus" tabindex="-1" role="dialog" aria-labelledby="sboutusModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="aboutusModalLabel"> About Us </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h2> Devloped By :- </h2>
+                  <h3> Jitesh Rajput </h3>
+                <h3> Tushar Sarode </h3>
+            <br><br>
+            <h2> Under Guidence Of <b>Masuldar Mam</b> </h2>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    {% if Messages %}
+    {% for msg in Messages %}
+        <div class="alert alert-{{messages.tags}}" role="alert">
+           <h3>{{msg}}</h3> 
+        </div>
+        {% endfor %}
+    {% endif%}
+
+    <div id="main-wrapper">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center templatemo-logo ">
+            <div class="logo">
+					<img src="{{userpro.dp.url}}" alt="IMG">
+				</div>
+            <h3 class="templatemo-site-title">
+                <br><br>
+               <a href="#"><span class="blue">Welcome </span><span class="green">{{user.first_name}}</span></a>
+            </h3>
+        </div>
+
+        <div class="container " id="padd">
+            <div
+                class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-offset-2 col-lg-offset-2 templatemo-content-wrapper">
+                <div class="templatemo-content">
+
+                    <section id="menu-section" class="active">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                                <a href="#" class="change-section">
+                                    <div class="black-bg btn-menu">
+                                        <i class="fa fa-envelope"></i>
+                                        <h2>Message</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                                <a href="go_to_postpage" class="change-section">
+                                    <div class="black-bg btn-menu">
+                                        <i class="fa fa-picture-o" fa-5x></i>
+                                        <h2> Posts</h2>
+                                    </div>
+                                </a>
+                            </div>
+                           
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                                <a href="addfriend" class="change-section">
+                                    <div class="black-bg btn-menu">
+                                        <i class="fa fa-users"></i>
+                                        <h2>Add Friends</h2>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                                <a href="profile" class="change-section">
+                                    <div class="black-bg btn-menu">
+                                        <i class="fa fa-user" fa-5x></i>
+                                        <h2>Profile</h2>
+                                    </div>
+                                </a>
+                            </div>
+                       
+                        </div>
+                    </section>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer">
+                            <p class="footer-text">Copyright &copy; Developed By Jitesh Rajput and Tushat Sarode</p>
+                        </div><!-- /.footer -->
+                    </div>
+
+                </div><!-- /#main-wrapper -->
+
+                <div id="preloader">
+                    <div id="status">&nbsp;</div>
+                </div><!-- /#preloader -->
+            </div>
+        </div>
+       
+    </div>
+              
+</body>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="../static/Index/js/jquery.min.js"></script>
+<script src="../static/Index/js/jquery-ui.min.js"></script>
+<script src="../static/Index/js/jquery.backstretch.min.js"></script>
+<script src="../static/Index/js/templatemo_script.js"></script>
+</html>
